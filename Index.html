@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agro Forte, Futuro Sustentável</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --verde-escuro: #2d5a27;
+    --verde-medio: #4a8c3f;
+    --verde-claro: #7bbf6a;
+    --verde-palha: #c8d96a;
+    --terra: #8b5e3c;
+    --terra-claro: #c4996c;
+    --palha: #f0e6b2;
+    --ceu: #a8d5e2;
+    --ceu-anoitecer: #f4a460;
+    --branco-creme: #faf7ef;
+    --texto-escuro: #1e3a1a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--branco-creme);
+    color: var(--texto-escuro);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+      #87ceeb 0%,
+      #b0e0e6 30%,
+      #d4edaa 55%,
+      #7bbf6a 70%,
+      #4a8c3f 85%,
+      #2d5a27 100%);
+  }
+
+  /* Sol */
+  .hero-sun {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffe066 60%, #ffb300 100%);
+    box-shadow: 0 0 60px 30px rgba(255,220,80,0.35), 0 0 120px 60px rgba(255,180,0,0.15);
+    animation: sun-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes sun-pulse {
+    0%, 100% { box-shadow: 0 0 60px 30px rgba(255,220,80,0.35), 0 0 120px 60px rgba(255,180,0,0.15); }
+    50% { box-shadow: 0 0 80px 40px rgba(255,220,80,0.5), 0 0 160px 80px rgba(255,180,0,0.2); }
+  }
+
+  /* Nuvens */
+  .cloud {
+    position: absolute;
+    background: rgba(255,255,255,0.82);
+    border-radius: 50px;
+    animation: cloud-drift linear infinite;
+  }
+  .cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: inherit;
+    border-radius: 50%;
+  }
+  .cloud-1 { width: 120px; height: 38px; top: 18%; left: -140px; animation-duration: 40s; animation-delay: 0s; }
+  .cloud-1::before { width: 60px; height: 55px; top: -28px; left: 18px; }
+  .cloud-1::after  { width: 45px; height: 42px; top: -22px; left: 55px; }
+
+  .cloud-2 { width: 80px; height: 26px; top: 12%; left: -100px; animation-duration: 55s; animation-delay: -18s; opacity: 0.65; }
+  .cloud-2::before { width: 40px; height: 38px; top: -18px; left: 12px; }
+  .cloud-2::after  { width: 32px; height: 30px; top: -14px; left: 38px; }
+
+  .cloud-3 { width: 100px; height: 32px; top: 22%; left: -120px; animation-duration: 48s; animation-delay: -30s; opacity: 0.75; }
+  .cloud-3::before { width: 50px; height: 46px; top: -24px; left: 15px; }
+  .cloud-3::after  { width: 38px; height: 36px; top: -18px; left: 48px; }
+
+  @keyframes cloud-drift { from { transform: translateX(0); } to { transform: translateX(110vw); } }
+
+  /* Montanhas */
+  .hero-mountains {
+    position: absolute;
+    bottom: 22%;
+    left: 0; right: 0;
+  }
+
+  /* Campos / Lavouras */
+  .hero-fields {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 28%;
+  }
+  .field-row {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 0;
+    display: flex;
+  }
+  .field-stripe {
+    flex: 1;
+    transition: filter 0.3s;
+  }
+
+  /* Silo / Celeiro */
+  .hero-barn {
+    position: absolute;
+    bottom: 22%;
+    right: 8%;
+  }
+
+  /* Texto sobre o Hero */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 1.5rem;
+    margin-top: -8vh;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(45,90,39,0.75);
+    color: var(--palha);
+    font-family: 'Lato', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 2rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid rgba(200,217,106,0.5);
+    backdrop-filter: blur(6px);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4.2rem);
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 24px rgba(30,58,26,0.55);
+    line-height: 1.12;
+    max-width: 780px;
+    margin: 0 auto 0.8rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--palha);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: rgba(255,255,255,0.88);
+    max-width: 520px;
+    margin: 0 auto 2.2rem;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--verde-escuro);
+    color: var(--palha);
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 0.85rem 2rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    border: 2px solid rgba(200,217,106,0.5);
+    transition: background 0.25s, transform 0.2s;
+  }
+  .hero-cta:hover { background: var(--verde-medio); transform: translateY(-2px); }
+  .hero-cta svg { width: 18px; height: 18px; }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    z-index: 10;
+    animation: scroll-bounce 2s ease-in-out infinite;
+  }
+  .scroll-hint svg { width: 22px; height: 22px; }
+  @keyframes scroll-bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(45,90,39,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(200,217,106,0.2);
+    transition: padding 0.3s;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--palha);
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-logo-icon {
+    width: 28px; height: 28px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(240,230,178,0.8);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--palha); }
+
+  /* ── SEÇÕES ── */
+  section { padding: 6rem 2rem; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--verde-medio);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--verde-escuro);
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--terra); }
+
+  .section-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #3d3d2e;
+    max-width: 600px;
+  }
+
+  /* ── SOBRE ── */
+  #sobre {
+    background: var(--branco-creme);
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .sobre-visual {
+    position: relative;
+  }
+
+  .sobre-visual svg {
+    width: 100%;
+    border-radius: 1.5rem;
+    overflow: hidden;
+  }
+
+  .sobre-stat-bar {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--verde-medio);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: #888;
+    margin-top: 0.3rem;
+    max-width: 100px;
+    line-height: 1.4;
+  }
+
+  /* ── PILARES ── */
+  #pilares {
+    background: var(--verde-escuro);
+    padding: 6rem 2rem;
+  }
+
+  #pilares .section-label { color: var(--verde-palha); }
+  #pilares .section-title { color: #fff; }
+
+  .pilares-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 3rem auto 0;
+  }
+
+  .pilar-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(200,217,106,0.2);
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    transition: background 0.3s, transform 0.3s;
+    cursor: default;
+  }
+  .pilar-card:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-5px);
+  }
+
+  .pilar-icon {
+    width: 52px; height: 52px;
+    margin-bottom: 1.2rem;
+  }
+
+  .pilar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--palha);
+    margin-bottom: 0.7rem;
+  }
+
+  .pilar-text {
+    font-size: 0.9rem;
+    color: rgba(240,230,178,0.7);
+    line-height: 1.7;
+  }
+
+  /* ── NÚMEROS ── */
+  #numeros {
+    background: var(--palha);
+    padding: 5rem 2rem;
+  }
+
+  .numeros-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .numeros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
+
+  .numero-item {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2rem 1rem;
+    border-bottom: 4px solid var(--verde-medio);
+    transition: transform 0.3s;
+  }
+  .numero-item:hover { transform: translateY(-4px); }
+
+  .numero-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--verde-escuro);
+    line-height: 1;
+  }
+
+  .numero-sub {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 0.5rem;
+    line-height: 1.5;
+  }
+
+  /* ── CICLO ── */
+  #ciclo {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 5rem;
+    align-items: center;
+    padding: 6rem 2rem;
+  }
+
+  .ciclo-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .ciclo-step {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--verde-escuro);
+    color: var(--palha);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--verde-escuro);
+    margin-bottom: 0.3rem;
+  }
+
+  .step-body p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.65;
+  }
+
+  /* ── DESTAQUES / GALERIA ── */
+  #galeria {
+    background: #f5f0e8;
+    padding: 6rem 2rem;
+  }
+
+  .galeria-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1.2rem;
+    margin-top: 3rem;
+  }
+
+  .galeria-item {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .galeria-item:first-child {
+    grid-row: 1 / 3;
+  }
+
+  .galeria-item svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .galeria-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1rem;
+    background: linear-gradient(transparent, rgba(30,58,26,0.8));
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── FUTURO ── */
+  #futuro {
+    background: linear-gradient(135deg, var(--verde-escuro) 0%, #1a3d15 100%);
+    padding: 7rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #futuro::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(200,217,106,0.04) 40px,
+      rgba(200,217,106,0.04) 41px
+    );
+  }
+
+  .futuro-inner {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  #futuro .section-label { color: var(--verde-palha); }
+
+  #futuro .section-title {
+    color: #fff;
+    max-width: 100%;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+  }
+
+  #futuro .section-text {
+    color: rgba(240,230,178,0.75);
+    max-width: 100%;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+
+  .futuro-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--verde-palha);
+    color: var(--verde-escuro);
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 0.9rem 2.2rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .futuro-cta:hover { opacity: 0.9; transform: translateY(-2px); }
+
+  /* ── RODAPÉ ── */
+  footer {
+    background: #121f0f;
+    color: rgba(240,230,178,0.5);
+    text-align: center;
+    padding: 2.5rem 2rem;
+    font-size: 0.82rem;
+    line-height: 1.8;
+  }
+
+  footer strong { color: var(--palha); }
+
+  /* ── RESPONSIVO ── */
+  @media(max-width: 820px) {
+    #sobre { grid-template-columns: 1fr; gap: 2rem; }
+    #ciclo { grid-template-columns: 1fr; gap: 2.5rem; }
+    .galeria-grid { grid-template-columns: 1fr 1fr; }
+    .galeria-item:first-child { grid-row: auto; }
+    .nav-links { display: none; }
+  }
+  @media(max-width: 520px) {
+    .galeria-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="14" cy="14" r="13" stroke="#c8d96a" stroke-width="1.5"/>
+      <path d="M14 22 Q8 16 10 10 Q14 4 14 4 Q14 4 18 10 Q20 16 14 22Z" fill="#7bbf6a"/>
+      <path d="M14 22 V12" stroke="#2d5a27" stroke-width="1.5"/>
+    </svg>
+    AgroFuturo
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#pilares">Pilares</a></li>
+    <li><a href="#numeros">Números</a></li>
+    <li><a href="#ciclo">Ciclo</a></li>
+    <li><a href="#futuro">Futuro</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Sol -->
+  <div class="hero-sun"></div>
+
+  <!-- Nuvens -->
+  <div class="cloud cloud-1"></div>
+  <div class="cloud cloud-2"></div>
+  <div class="cloud cloud-3"></div>
+
+  <!-- Paisagem SVG (montanhas + celeiro + campos) -->
+  <svg style="position:absolute;bottom:0;left:0;width:100%;height:55%" viewBox="0 0 1400 420" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+    <!-- Montanhas fundo -->
+    <polygon points="0,280 180,130 360,280" fill="#5a9e4a" opacity="0.5"/>
+    <polygon points="140,280 370,90 600,280" fill="#4a8c3f" opacity="0.6"/>
+    <polygon points="750,280 950,110 1150,280" fill="#5a9e4a" opacity="0.5"/>
+    <polygon points="900,280 1150,70 1400,280" fill="#4a8c3f" opacity="0.6"/>
+    <polygon points="300,280 520,140 740,280" fill="#3d7a34" opacity="0.45"/>
+    <polygon points="1100,280 1260,160 1400,280" fill="#3d7a34" opacity="0.45"/>
+
+    <!-- Base verde -->
+    <rect x="0" y="270" width="1400" height="150" fill="#4a8c3f"/>
+
+    <!-- Faixas de lavoura (perspectiva) -->
+    <polygon points="0,340 1400,295 1400,420 0,420" fill="#2d5a27"/>
+    <!-- Linhas de plantio -->
+    <g stroke="#3d7a34" stroke-width="2" opacity="0.7">
+      <line x1="50" y1="420" x2="200" y2="310"/>
+      <line x1="150" y1="420" x2="300" y2="305"/>
+      <line x1="250" y1="420" x2="400" y2="302"/>
+      <line x1="350" y1="420" x2="500" y2="300"/>
+      <line x1="450" y1="420" x2="600" y2="298"/>
+      <line x1="550" y1="420" x2="700" y2="297"/>
+      <line x1="650" y1="420" x2="800" y2="296"/>
+      <line x1="750" y1="420" x2="900" y2="296"/>
+      <line x1="850" y1="420" x2="1000" y2="297"/>
+      <line x1="950" y1="420" x2="1100" y2="298"/>
+      <line x1="1050" y1="420" x2="1200" y2="300"/>
+      <line x1="1150" y1="420" x2="1300" y2="303"/>
+      <line x1="1250" y1="420" x2="1400" y2="307"/>
+    </g>
+
+    <!-- Palheiro / Celeiro -->
+    <rect x="1080" y="195" width="90" height="80" fill="#8b5e3c"/>
+    <polygon points="1070,200 1180,200 1125,148" fill="#6b3f22"/>
+    <!-- Porta celeiro -->
+    <rect x="1108" y="238" width="30" height="37" fill="#6b3f22"/>
+    <!-- Janela celeiro -->
+    <rect x="1142" y="210" width="16" height="14" fill="#ffd580" opacity="0.7"/>
+    <!-- Silo -->
+    <rect x="1185" y="215" width="32" height="60" fill="#aaa" opacity="0.8"/>
+    <ellipse cx="1201" cy="215" rx="16" ry="7" fill="#ccc" opacity="0.8"/>
+
+    <!-- Árvores -->
+    <g fill="#2d5a27">
+      <circle cx="140" cy="270" r="22"/>
+      <circle cx="155" cy="260" r="18"/>
+      <rect x="147" y="270" width="6" height="20" fill="#8b5e3c"/>
+    </g>
+    <g fill="#3d7a34">
+      <circle cx="400" cy="272" r="18"/>
+      <circle cx="414" cy="264" r="14"/>
+      <rect x="406" y="272" width="5" height="16" fill="#8b5e3c"/>
+    </g>
+    <g fill="#2d5a27">
+      <circle cx="850" cy="268" r="20"/>
+      <circle cx="864" cy="260" r="16"/>
+      <rect x="856" y="270" width="6" height="18" fill="#8b5e3c"/>
+    </g>
+
+    <!-- Trator pequeno -->
+    <g transform="translate(620, 285)">
+      <rect x="0" y="5" width="44" height="22" rx="3" fill="#e05c1a"/>
+      <rect x="28" y="0" width="18" height="12" rx="2" fill="#c44a10"/>
+      <circle cx="10" cy="28" r="7" fill="#222"/>
+      <circle cx="10" cy="28" r="4" fill="#555"/>
+      <circle cx="36" cy="28" r="9" fill="#222"/>
+      <circle cx="36" cy="28" r="5" fill="#555"/>
+      <rect x="42" y="10" width="8" height="5" fill="#f0a030" opacity="0.9"/>
+    </g>
+
+    <!-- Cerca -->
+    <g stroke="#8b5e3c" stroke-width="2.5" fill="none">
+      <line x1="0" y1="330" x2="580" y2="305"/>
+      <line x1="50" y1="325" x2="50" y2="340"/>
+      <line x1="130" y1="320" x2="130" y2="335"/>
+      <line x1="210" y1="316" x2="210" y2="331"/>
+      <line x1="290" y1="313" x2="290" y2="328"/>
+      <line x1="370" y1="311" x2="370" y2="326"/>
+      <line x1="450" y1="308" x2="450" y2="323"/>
+      <line x1="530" y1="307" x2="530" y2="322"/>
+    </g>
+
+    <!-- Pássaros (simples) -->
+    <g stroke="#1e3a1a" stroke-width="1.5" fill="none" opacity="0.4">
+      <path d="M320 80 Q325 75 330 80"/>
+      <path d="M335 85 Q340 80 345 85"/>
+      <path d="M260 95 Q265 90 270 95"/>
+    </g>
+  </svg>
+
+  <!-- Conteúdo do hero -->
+  <div class="hero-content">
+    <div class="hero-badge">🌱 Produção &amp; Sustentabilidade</div>
+    <h1 class="hero-title">Agro <em>forte</em>,<br>futuro sustentável</h1>
+    <p class="hero-subtitle">Equilíbrio entre produção e meio ambiente — o caminho para uma agricultura que alimenta o presente e preserva o amanhã.</p>
+    <a href="#sobre" class="hero-cta">
+      Conheça nossa visão
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Role para baixo</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" style="padding:6rem 2rem">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center">
+    <div class="sobre-visual">
+      <!-- Ilustração campo cultivado -->
+      <svg viewBox="0 0 460 320" xmlns="http://www.w3.org/2000/svg" style="border-radius:1.5rem;width:100%">
+        <!-- Céu -->
+        <rect width="460" height="320" fill="#c8eaf5"/>
+        <!-- Sol -->
+        <circle cx="380" cy="55" r="36" fill="#ffe066" opacity="0.9"/>
+        <circle cx="380" cy="55" r="50" fill="#ffe066" opacity="0.15"/>
+        <!-- Nuvens -->
+        <ellipse cx="120" cy="60" rx="55" ry="20" fill="white" opacity="0.75"/>
+        <ellipse cx="100" cy="50" rx="35" ry="25" fill="white" opacity="0.75"/>
+        <ellipse cx="150" cy="52" rx="28" ry="20" fill="white" opacity="0.75"/>
+        <!-- Montanhas fundo -->
+        <polygon points="0,190 80,110 160,190" fill="#7bbf6a" opacity="0.6"/>
+        <polygon points="100,190 210,80 320,190" fill="#5aaa4e" opacity="0.65"/>
+        <polygon points="270,190 360,120 460,190" fill="#7bbf6a" opacity="0.55"/>
+        <!-- Chão base -->
+        <rect x="0" y="190" width="460" height="130" fill="#4a8c3f"/>
+        <!-- Lavoura listrada -->
+        <rect x="0" y="215" width="460" height="105" fill="#2d5a27"/>
+        <rect x="0" y="215" width="460" height="18" fill="#3d7a34"/>
+        <rect x="0" y="248" width="460" height="14" fill="#3d7a34"/>
+        <rect x="0" y="277" width="460" height="12" fill="#3d7a34"/>
+        <rect x="0" y="303" width="460" height="17" fill="#3d7a34"/>
+        <!-- Linhas de plantio -->
+        <g stroke="#52a040" stroke-width="1.5" opacity="0.4">
+          <line x1="40" y1="320" x2="80" y2="215"/>
+          <line x1="100" y1="320" x2="140" y2="215"/>
+          <line x1="160" y1="320" x2="200" y2="215"/>
+          <line x1="220" y1="320" x2="260" y2="215"/>
+          <line x1="280" y1="320" x2="320" y2="215"/>
+          <line x1="340" y1="320" x2="380" y2="215"/>
+          <line x1="400" y1="320" x2="440" y2="215"/>
+        </g>
+        <!-- Árvore esquerda -->
+        <rect x="28" y="175" width="7" height="28" fill="#6b3f22"/>
+        <circle cx="32" cy="162" r="22" fill="#2d5a27"/>
+        <circle cx="20" cy="172" r="15" fill="#3d7a34"/>
+        <circle cx="44" cy="170" r="14" fill="#2d5a27"/>
+        <!-- Árvore direita -->
+        <rect x="410" y="175" width="7" height="28" fill="#6b3f22"/>
+        <circle cx="414" cy="162" r="20" fill="#3d7a34"/>
+        <circle cx="402" cy="170" r="13" fill="#2d5a27"/>
+        <circle cx="426" cy="172" r="14" fill="#3d7a34"/>
+        <!-- Casa fazenda -->
+        <rect x="190" y="150" width="80" height="52" fill="#c4996c"/>
+        <polygon points="182,154 278,154 230,118" fill="#8b5e3c"/>
+        <rect x="212" y="174" width="22" height="28" fill="#6b3f22"/>
+        <rect x="244" y="156" width="16" height="14" fill="#a8d5e2" opacity="0.8"/>
+        <!-- Cerca -->
+        <g stroke="#8b5e3c" stroke-width="2" fill="none">
+          <line x1="0" y1="208" x2="460" y2="208"/>
+          <line x1="40" y1="202" x2="40" y2="215"/>
+          <line x1="100" y1="202" x2="100" y2="215"/>
+          <line x1="160" y1="202" x2="160" y2="215"/>
+          <line x1="220" y1="202" x2="220" y2="215"/>
+          <line x1="280" y1="202" x2="280" y2="215"/>
+          <line x1="340" y1="202" x2="340" y2="215"/>
+          <line x1="400" y1="202" x2="400" y2="215"/>
+        </g>
+      </svg>
+    </div>
+    <div>
+      <div class="section-label">Nossa Missão</div>
+      <h2 class="section-title">O campo que <em>alimenta</em> e<br>cuida da terra</h2>
+      <p class="section-text">O Brasil é uma das maiores potências agrícolas do mundo. Mas grandeza real significa produzir com responsabilidade — preservando florestas, recursos hídricos e biodiversidade enquanto alimentamos bilhões de pessoas.</p>
+      <p class="section-text" style="margin-top:1rem">A agricultura sustentável não é oposição ao crescimento: é a única forma de garantir que as gerações futuras herdem um planeta fértil e próspero.</p>
+      <div class="sobre-stat-bar">
+        <div class="stat-item">
+          <span class="stat-num">37%</span>
+          <span class="stat-label">do território nacional dedicado ao agro</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">2.4T</span>
+          <span class="stat-label">de reais gerados pelo setor em 2023</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">26%</span>
+          <span class="stat-label">do PIB nacional originado no agro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<section id="pilares" style="background:var(--verde-escuro);padding:6rem 2rem">
+  <div style="max-width:1100px;margin:0 auto;text-align:center">
+    <div class="section-label" style="color:var(--verde-palha)">Fundamentos</div>
+    <h2 class="section-title" style="color:#fff;max-width:100%">Os <em style="color:var(--palha)">quatro pilares</em> do agro sustentável</h2>
+  </div>
+  <div class="pilares-grid">
+
+    <div class="pilar-card">
+      <svg class="pilar-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="26" cy="26" r="25" stroke="#c8d96a" stroke-width="1.5" opacity="0.4"/>
+        <path d="M26 40 Q16 30 18 20 Q26 8 26 8 Q26 8 34 20 Q36 30 26 40Z" fill="#7bbf6a"/>
+        <path d="M26 40 V22" stroke="#c8d96a" stroke-width="2" stroke-linecap="round"/>
+        <path d="M26 30 L20 24" stroke="#c8d96a" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M26 26 L32 20" stroke="#c8d96a" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="pilar-title">Biodiversidade</div>
+      <p class="pilar-text">Preservar matas ciliares, reservas legais e corredores ecológicos é fundamental para manter o equilíbrio dos ecossistemas que sustentam a própria produção agrícola.</p>
+    </div>
+
+    <div class="pilar-card">
+      <svg class="pilar-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="26" cy="26" r="25" stroke="#c8d96a" stroke-width="1.5" opacity="0.4"/>
+        <path d="M16 36 Q12 20 26 14 Q40 20 36 36" stroke="#a8d5e2" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M20 36 Q26 28 26 20" stroke="#a8d5e2" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="26" cy="38" rx="12" ry="4" fill="#a8d5e2" opacity="0.5"/>
+        <path d="M14 38 Q26 32 38 38" stroke="#a8d5e2" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="pilar-title">Gestão Hídrica</div>
+      <p class="pilar-text">Uso eficiente da água por meio de irrigação inteligente, captação de chuvas e proteção de nascentes garante água para o campo e para as cidades.</p>
+    </div>
+
+    <div class="pilar-card">
+      <svg class="pilar-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="26" cy="26" r="25" stroke="#c8d96a" stroke-width="1.5" opacity="0.4"/>
+        <rect x="18" y="28" width="16" height="10" rx="2" fill="#c4996c"/>
+        <polygon points="14,30 26,18 38,30" fill="#8b5e3c"/>
+        <circle cx="34" cy="22" r="7" fill="#ffe066" opacity="0.85"/>
+        <line x1="34" y1="12" x2="34" y2="10" stroke="#ffe066" stroke-width="2"/>
+        <line x1="40" y1="16" x2="42" y2="14" stroke="#ffe066" stroke-width="2"/>
+        <line x1="44" y1="22" x2="46" y2="22" stroke="#ffe066" stroke-width="2"/>
+      </svg>
+      <div class="pilar-title">Energia Limpa</div>
+      <p class="pilar-text">Solar, eólica e biogás oriundo de resíduos agrícolas reduzem custos, diminuem emissões de carbono e transformam o produtor em gerador de energia.</p>
+    </div>
+
+    <div class="pilar-card">
+      <svg class="pilar-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="26" cy="26" r="25" stroke="#c8d96a" stroke-width="1.5" opacity="0.4"/>
+        <rect x="14" y="30" width="24" height="12" rx="2" fill="#7bbf6a" opacity="0.7"/>
+        <rect x="18" y="24" width="8" height="8" rx="1" fill="#c8d96a" opacity="0.9"/>
+        <rect x="28" y="22" width="8" height="10" rx="1" fill="#c8d96a" opacity="0.9"/>
+        <rect x="18" y="18" width="4" height="6" rx="1" fill="#7bbf6a"/>
+        <rect x="30" y="16" width="4" height="6" rx="1" fill="#7bbf6a"/>
+        <line x1="26" y1="36" x2="26" y2="30" stroke="#2d5a27" stroke-width="1.5"/>
+        <line x1="20" y1="36" x2="20" y2="30" stroke="#2d5a27" stroke-width="1.5"/>
+        <line x1="32" y1="36" x2="32" y2="30" stroke="#2d5a27" stroke-width="1.5"/>
+      </svg>
+      <div class="pilar-title">Solo Saudável</div>
+      <p class="pilar-text">Rotação de culturas, plantio direto e adubação orgânica recuperam e mantêm a fertilidade do solo — a base de toda produtividade sustentável.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<section id="numeros" style="background:var(--palha);padding:5rem 2rem">
+  <div style="max-width:1000px;margin:0 auto;text-align:center">
+    <div class="section-label">O agro em números</div>
+    <h2 class="section-title" style="max-width:100%">Produção que <em>impressiona</em>, responsabilidade que transforma</h2>
+    <div class="numeros-grid">
+      <div class="numero-item">
+        <div class="numero-big">+50%</div>
+        <div class="numero-sub">da produção agrícola mundial sustentável até 2030 (meta FAO)</div>
+      </div>
+      <div class="numero-item">
+        <div class="numero-big">32M</div>
+        <div class="numero-sub">de hectares recuperados pelo ABC+ no Brasil</div>
+      </div>
+      <div class="numero-item">
+        <div class="numero-big">66%</div>
+        <div class="numero-sub">do território brasileiro ainda coberto por vegetação nativa</div>
+      </div>
+      <div class="numero-item">
+        <div class="numero-big">1,3bi</div>
+        <div class="numero-sub">de toneladas de CO₂ reduzidas com práticas sustentáveis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CICLO SUSTENTÁVEL -->
+<section id="ciclo" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:center;padding:6rem 2rem">
+  <div>
+    <div class="section-label">Como funciona</div>
+    <h2 class="section-title">O ciclo do agro <em>responsável</em></h2>
+    <p class="section-text" style="margin-bottom:2rem">Um sistema agrícola sustentável é circular: o que a terra oferece é devolvido com cuidado, criando um ciclo virtuoso de produção e regeneração.</p>
+    <div class="ciclo-steps">
+      <div class="ciclo-step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Planejamento e manejo do solo</h3>
+          <p>Análise do solo, rotação de culturas e uso consciente de insumos preparam o terreno para uma safra produtiva e de baixo impacto.</p>
+        </div>
+      </div>
+      <div class="ciclo-step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Produção com tecnologia verde</h3>
+          <p>Agricultura de precisão, drones e sensores IoT reduzem desperdício de água e agroquímicos, aumentando a eficiência por hectare.</p>
+        </div>
+      </div>
+      <div class="ciclo-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Colheita e rastreabilidade</h3>
+          <p>Sistemas de rastreio garantem a origem sustentável dos alimentos, agregando valor ao produto e transparência para o consumidor.</p>
+        </div>
+      </div>
+      <div class="ciclo-step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Recuperação e compensação</h3>
+          <p>Recomposição de áreas degradadas, créditos de carbono e pagamento por serviços ambientais fecham o ciclo de responsabilidade.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Diagrama do ciclo -->
+  <div>
+    <svg viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:420px;display:block;margin:0 auto">
+      <!-- Círculo externo -->
+      <circle cx="190" cy="190" r="160" fill="none" stroke="#c8d96a" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+      <!-- Círculo interno -->
+      <circle cx="190" cy="190" r="60" fill="#2d5a27"/>
+      <!-- Folha central -->
+      <path d="M190 162 Q168 190 190 218 Q212 190 190 162Z" fill="#7bbf6a"/>
+      <line x1="190" y1="218" x2="190" y2="162" stroke="#c8d96a" stroke-width="1.5"/>
+      <!-- Texto central -->
+      <text x="190" y="194" text-anchor="middle" font-family="Lato,sans-serif" font-size="10" font-weight="700" fill="#c8d96a" letter-spacing="0.1em">CICLO</text>
+      <text x="190" y="207" text-anchor="middle" font-family="Lato,sans-serif" font-size="10" font-weight="700" fill="#c8d96a" letter-spacing="0.1em">SUSTENTÁVEL</text>
+
+      <!-- Segmentos do ciclo -->
+      <!-- 1 - Topo -->
+      <path d="M190 30 A160 160 0 0 1 350 190" fill="none" stroke="#4a8c3f" stroke-width="28" stroke-linecap="round" opacity="0.85"/>
+      <!-- 2 - Direita -->
+      <path d="M350 190 A160 160 0 0 1 190 350" fill="none" stroke="#7bbf6a" stroke-width="28" stroke-linecap="round" opacity="0.85"/>
+      <!-- 3 - Base -->
+      <path d="M190 350 A160 160 0 0 1 30 190" fill="none" stroke="#c8d96a" stroke-width="28" stroke-linecap="round" opacity="0.85"/>
+      <!-- 4 - Esquerda -->
+      <path d="M30 190 A160 160 0 0 1 190 30" fill="none" stroke="#a8d5e2" stroke-width="28" stroke-linecap="round" opacity="0.85"/>
+
+      <!-- Ícones / Labels -->
+      <text x="280" y="82" text-anchor="middle" font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#fff">SOLO</text>
+      <text x="348" y="280" text-anchor="middle" font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#1e3a1a">PRODUÇÃO</text>
+      <text x="100" y="348" text-anchor="middle" font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#1e3a1a">COLHEITA</text>
+      <text x="42" y="100" text-anchor="middle" font-family="Lato,sans-serif" font-size="11" font-weight="700" fill="#fff">RECUPERAÇÃO</text>
+
+      <!-- Setas de direção -->
+      <path d="M186 28 L194 18 L198 30" fill="#fff" opacity="0.8"/>
+    </svg>
+  </div>
+</section>
+
+<!-- GALERIA VISUAL -->
+<section id="galeria" style="background:#f0ece0;padding:6rem 2rem">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-label">Retratos do campo</div>
+    <h2 class="section-title">A beleza de uma <em>agricultura viva</em></h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:200px 200px;gap:1.2rem;margin-top:2.5rem">
+
+      <!-- Item 1: grande -->
+      <div style="grid-row:1/3;border-radius:1rem;overflow:hidden;position:relative">
+        <svg viewBox="0 0 280 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+          <rect width="280" height="420" fill="#87ceeb"/>
+          <circle cx="220" cy="60" r="45" fill="#ffe066" opacity="0.9"/>
+          <polygon points="0,260 100,160 200,260" fill="#7bbf6a" opacity="0.7"/>
+          <polygon points="80,260 200,130 280,260" fill="#5aaa4e" opacity="0.7"/>
+          <rect x="0" y="255" width="280" height="165" fill="#4a8c3f"/>
+          <rect x="0" y="280" width="280" height="140" fill="#2d5a27"/>
+          <!-- Girassóis -->
+          <g>
+            <line x1="60" y1="260" x2="60" y2="310" stroke="#4a8c3f" stroke-width="3"/>
+            <circle cx="60" cy="255" r="18" fill="#ffe066"/>
+            <circle cx="60" cy="255" r="10" fill="#8b5e3c"/>
+          </g>
+          <g>
+            <line x1="120" y1="255" x2="120" y2="310" stroke="#4a8c3f" stroke-width="3"/>
+            <circle cx="120" cy="250" r="14" fill="#ffe066"/>
+            <circle cx="120" cy="250" r="7" fill="#8b5e3c"/>
+          </g>
+          <g>
+            <line x1="190" y1="258" x2="190" y2="310" stroke="#4a8c3f" stroke-width="3"/>
+            <circle cx="190" cy="253" r="16" fill="#ffe066"/>
+            <circle cx="190" cy="253" r="8" fill="#8b5e3c"/>
+          </g>
+          <!-- Céu gradiente em overlay -->
+          <rect width="280" height="140" fill="url(#skygrad)" opacity="0.3"/>
+          <defs>
+            <linearGradient id="skygrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ff9a3c"/>
+              <stop offset="100%" stop-color="transparent"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem;background:linear-gradient(transparent,rgba(30,58,26,0.8));color:#fff;font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase">Campos de girassol</div>
+      </div>
+
+      <!-- Item 2 -->
+      <div style="border-radius:1rem;overflow:hidden;position:relative">
+        <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+          <rect width="280" height="200" fill="#a8d5e2"/>
+          <rect x="0" y="110" width="280" height="90" fill="#4a8c3f"/>
+          <rect x="0" y="130" width="280" height="70" fill="#2d5a27"/>
+          <!-- Listras de plantio -->
+          <g fill="#3d7a34">
+            <rect x="0" y="140" width="280" height="6"/>
+            <rect x="0" y="158" width="280" height="6"/>
+            <rect x="0" y="176" width="280" height="6"/>
+          </g>
+          <!-- Sistema de irrigação -->
+          <line x1="0" y1="115" x2="280" y2="115" stroke="#a8d5e2" stroke-width="3"/>
+          <g stroke="#a8d5e2" stroke-width="1.5" fill="none" opacity="0.85">
+            <line x1="50" y1="115" x2="50" y2="105"/>
+            <path d="M45 103 Q50 98 55 103"/>
+            <line x1="110" y1="115" x2="110" y2="105"/>
+            <path d="M105 103 Q110 98 115 103"/>
+            <line x1="170" y1="115" x2="170" y2="105"/>
+            <path d="M165 103 Q170 98 175 103"/>
+            <line x1="230" y1="115" x2="230" y2="105"/>
+            <path d="M225 103 Q230 98 235 103"/>
+          </g>
+          <ellipse cx="50" cy="112" rx="4" ry="2" fill="#a8d5e2" opacity="0.6"/>
+          <ellipse cx="110" cy="112" rx="4" ry="2" fill="#a8d5e2" opacity="0.6"/>
+        </svg>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:0.8rem;background:linear-gradient(transparent,rgba(30,58,26,0.8));color:#fff;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase">Irrigação inteligente</div>
+      </div>
+
+      <!-- Item 3 -->
+      <div style="border-radius:1rem;overflow:hidden;position:relative">
+        <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+          <rect width="280" height="200" fill="#d4edaa"/>
+          <rect x="0" y="120" width="280" height="80" fill="#8b5e3c"/>
+          <!-- Fileiras de café / soja -->
+          <g fill="#4a8c3f">
+            <ellipse cx="40" cy="118" rx="18" ry="12"/>
+            <ellipse cx="90" cy="115" rx="20" ry="13"/>
+            <ellipse cx="145" cy="118" rx="18" ry="12"/>
+            <ellipse cx="200" cy="115" rx="20" ry="13"/>
+            <ellipse cx="248" cy="118" rx="16" ry="11"/>
+          </g>
+          <g fill="#2d5a27" opacity="0.6">
+            <ellipse cx="40" cy="118" rx="12" ry="8"/>
+            <ellipse cx="90" cy="115" rx="14" ry="9"/>
+            <ellipse cx="145" cy="118" rx="12" ry="8"/>
+            <ellipse cx="200" cy="115" rx="14" ry="9"/>
+          </g>
+          <!-- Fundo floresta -->
+          <g fill="#3d7a34" opacity="0.5">
+            <circle cx="30" cy="80" r="30"/>
+            <circle cx="80" cy="65" r="40"/>
+            <circle cx="150" cy="70" r="35"/>
+            <circle cx="220" cy="62" r="42"/>
+            <circle cx="260" cy="75" r="28"/>
+          </g>
+        </svg>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:0.8rem;background:linear-gradient(transparent,rgba(30,58,26,0.8));color:#fff;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase">Cultivo e floresta</div>
+      </div>
+
+      <!-- Item 4 -->
+      <div style="border-radius:1rem;overflow:hidden;position:relative">
+        <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+          <rect width="280" height="200" fill="#ffe4b0"/>
+          <!-- Pôr do sol -->
+          <circle cx="140" cy="100" r="65" fill="#ff9a3c" opacity="0.6"/>
+          <circle cx="140" cy="100" r="45" fill="#ffe066" opacity="0.75"/>
+          <rect x="0" y="140" width="280" height="60" fill="#2d5a27"/>
+          <!-- Silhuetas de árvores -->
+          <g fill="#1e3a1a">
+            <rect x="20" y="100" width="5" height="44"/>
+            <ellipse cx="22" cy="98" rx="16" ry="24"/>
+            <rect x="60" y="110" width="4" height="34"/>
+            <ellipse cx="62" cy="108" rx="12" ry="18"/>
+            <rect x="200" y="105" width="5" height="38"/>
+            <ellipse cx="202" cy="103" rx="15" ry="22"/>
+            <rect x="245" y="112" width="4" height="32"/>
+            <ellipse cx="247" cy="110" rx="11" ry="16"/>
+          </g>
+          <!-- Pássaros silhueta -->
+          <g stroke="#1e3a1a" stroke-width="1.5" fill="none" opacity="0.6">
+            <path d="M100 60 Q105 55 110 60"/>
+            <path d="M120 48 Q125 43 130 48"/>
+            <path d="M155 54 Q160 49 165 54"/>
+          </g>
+        </svg>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:0.8rem;background:linear-gradient(transparent,rgba(30,58,26,0.8));color:#fff;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase">Entardecer no campo</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FUTURO -->
+<section id="futuro" style="background:linear-gradient(135deg,#2d5a27 0%,#1a3d15 100%);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(200,217,106,0.04) 40px,rgba(200,217,106,0.04) 41px)"></div>
+  <div style="position:relative;max-width:700px;margin:0 auto">
+    <div class="section-label" style="color:var(--verde-palha)">Compromisso</div>
+    <h2 class="section-title" style="color:#fff;max-width:100%;font-size:clamp(2rem,4.5vw,3rem)">O futuro pertence a quem <em style="color:var(--palha)">planta hoje</em> com sabedoria</h2>
+    <p class="section-text" style="color:rgba(240,230,178,0.75);max-width:100%;margin:0 auto 2.5rem;text-align:center">Cada semente plantada com responsabilidade é um voto de confiança no amanhã. A sustentabilidade no agro não é tendência — é necessidade e oportunidade.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="#pilares" style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--verde-palha);color:var(--verde-escuro);font-weight:700;font-size:0.9rem;padding:0.85rem 2rem;border-radius:3rem;text-decoration:none;transition:opacity .2s">
+        Conheça os pilares
+      </a>
+      <a href="#sobre" style="display:inline-flex;align-items:center;gap:0.6rem;background:transparent;color:var(--palha);font-weight:700;font-size:0.9rem;padding:0.85rem 2rem;border-radius:3rem;text-decoration:none;border:2px solid rgba(200,217,106,0.5);transition:background .2s">
+        Saiba mais
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer>
+  <p><strong>AgroFuturo</strong> — Agro forte, futuro sustentável</p>
+  <p style="margin-top:0.4rem">Equilíbrio entre produção e meio ambiente · Brasil · 2025</p>
+  <p style="margin-top:0.4rem;font-size:0.76rem;opacity:0.6">Site educativo sobre agricultura sustentável</p>
+</footer>
+
+<script>
+  // Smooth scroll para links internos
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Scroll reveal leve
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.pilar-card, .numero-item, .ciclo-step').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
